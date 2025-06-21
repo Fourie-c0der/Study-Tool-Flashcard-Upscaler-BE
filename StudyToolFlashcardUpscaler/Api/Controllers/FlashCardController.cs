@@ -42,6 +42,14 @@ namespace StudyToolFlashcardUpscaler.Api.Controllers
             return Ok(response);
         }
 
+        [HttpPut("{id}")]
+        public IActionResult EditFlashcard(int id, [FromBody] FlashCardDto updatedCard)
+        {
+            var result = flashCardService.EditFlashCard(id, updatedCard);
+            return result ? NoContent() : NotFound();
+        }
+
+
 
         [HttpDelete("{id}")]
         public IActionResult DeleteFlashcard(int id)
