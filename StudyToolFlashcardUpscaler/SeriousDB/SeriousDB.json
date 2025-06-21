@@ -22,5 +22,25 @@
     }
   ],
   "notes": [],
-  "cards": []
+  "cards": [
+    {
+      "Id": 1,
+      "Question": "string",
+      "Answer": "string",
+      "Options": [
+        "string"
+      ]
+    },
+    {
+      "Id": 2,
+      "Question": "How much money",
+      "Answer": "Roald Dahl",
+      "Options": [
+        "Roald Dahl",
+        "2",
+        "3",
+        "4"
+      ]
+    }
+  ]
 }

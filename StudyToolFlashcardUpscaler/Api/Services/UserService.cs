@@ -18,6 +18,12 @@ namespace StudyToolFlashcardUpscaler.Api.Services
             return _database.GetUsers();
         }
 
+       public UserDto? ValidateUser(LoginCredentials credentials)
+        {
+            var users = GetAllUsers();
+            return users.SingleOrDefault(u => u.username == credentials.username && u.password == credentials.password);
+        }
+
         public UserDto CreateUser(UserDto newUser)
         {
             if (newUser == null)
@@ -25,11 +31,11 @@ namespace StudyToolFlashcardUpscaler.Api.Services
                 throw new ArgumentNullException(nameof(newUser), "User data cannot be null.");
             }
 
-             if (_database.Data!.users == null)
+            if (_database.Data!.users == null)
                 _database.Data.users = [];
 
             var highestId = _database.Data.users.Max(x => x.Id);
-                newUser.Id = highestId + 1;
+            newUser.Id = highestId + 1;
 
             _database.Data.users!.Add(newUser);
             _database.SaveData();

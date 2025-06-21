@@ -20,6 +20,32 @@ namespace StudyToolFlashcardUpscaler.Api.Controllers
         /// Retrieves all users from the system.
         /// </summary>
         /// <returns>List of UserDto objects.</returns>
+
+        [HttpPost]
+        public ActionResult<UserDto> ValidateUser([FromBody] LoginCredentials credentials)
+        {
+            try
+            {
+                var user = _userService.ValidateUser(credentials);
+
+                if (user != null)
+                {
+                    return Ok(user);
+                }
+                else
+                {
+                    return BadRequest("Invalid credentials");
+                }
+                    
+
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
         [HttpGet]
         public ActionResult<List<UserDto>> GetAllUsers()
         {
